@@ -27,6 +27,7 @@
 @import "./components/app/loader";
 
 @import "./components/videos/videos.scss";
+@import "./components/departments/card.scss";
 
 // ---------------
 // Pages
@@ -35,6 +36,7 @@
 @import "./pages/home/portfolio";
 @import "./pages/home/products";
 @import "./pages/home/posts";
+@import "./pages/home/departments";
 
 @import "./pages/news/news";
 @import "./pages/contact-us/contact-us";

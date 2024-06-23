@@ -1,0 +1,48 @@
+.departments-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  column-gap: 24px;
+
+  margin-top: 24px;
+}
+
+.department-card {
+  &__image-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 50vh;
+
+    position: relative;
+
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__title {
+    position: absolute;
+
+    font-family: $montserrat;
+    font-size: 24px;
+    font-weight: 500;
+    color: #fff;
+    line-height: 26px;
+
+    transition: color 0.5s ease;
+  }
+}

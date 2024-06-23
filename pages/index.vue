@@ -9,8 +9,7 @@
       />
     </Head>
     <BannersMain />
-    <BannersAbout :texts="texts" />
-    <HomePortfolio :texts="texts" />
+    <HomeDepartments :texts="texts" />
     <HomeProducts :texts="texts" />
     <HomePosts :texts="texts" />
     <HomeVideos :texts="texts" />
