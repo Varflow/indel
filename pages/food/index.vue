@@ -2,23 +2,23 @@
 <template>
   <div class="category-page">
     <Head>
-      <Title>Інгредієнти</Title>
-      <Meta name="og:title" :content="` Ingredients`" />
+      <Title>Харчові інгредієнти</Title>
+      <Meta name="og:title" :content="`Харчові інгредієнти`" />
       <Meta name="og:image" content="/images/banners/ingredients.jpeg" />
     </Head>
     <div class="container">
       <AppPageBanner
-        title="Інгредієнти"
+        title="Харчові інгредієнти"
         img="/images/banners/ingredients.jpeg"
       />
 
       <div class="row categories-list gy-5">
-        <div class="col-12 col-lg-4" v-for="category of ingredientsForView">
+        <div class="col-12 col-lg-4" v-for="category of foodForView">
           <NuxtLink
             class="category-card__link"
             :to="
               category.children && category.children.length
-                ? `/ingredients/${category.id}`
+                ? `/food/${category.id}`
                 : `/category/${category.id}`
             "
           >
@@ -64,14 +64,14 @@ export default {
 
       const categories = await find("categories", { populate: "*" });
 
-      const ingredients = categories.data.filter(
-        (category) => category.attributes.section === "ingredients"
+      const foods = categories.data.filter(
+        (category) => category.attributes.section === "food"
       );
 
-      const ingredientsForView = toView(ingredients);
+      const foodForView = toView(foods);
 
       return {
-        ingredientsForView,
+        foodForView,
         media,
       };
     } catch (error) {

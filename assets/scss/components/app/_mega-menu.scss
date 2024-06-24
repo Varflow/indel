@@ -56,7 +56,6 @@
   &-categories__list {
     display: flex;
     flex-direction: column;
-
     row-gap: 16px;
   }
 
@@ -74,6 +73,7 @@
     cursor: pointer;
 
     transition: color 0.2s ease;
+    text-decoration: none;
 
     &:hover {
       color: $accent;

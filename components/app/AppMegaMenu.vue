@@ -76,16 +76,35 @@
                 />
               </svg>
             </div>
+            <NuxtLink
+              class="mega-menu-categories__item"
+              :to="`/${currentSection[0].section}/`"
+            >
+              Усі
+              {{
+                currentSection[0].section === "food"
+                  ? "Xарчові інгредієнти"
+                  : "Фармацевтичні інгредієнти"
+              }}
+            </NuxtLink>
           </div>
         </div>
         <div class="col-4" v-if="currentCategory">
           <div class="mega-menu-categories__list">
-            <div
+            <NuxtLink
               class="mega-menu-categories__item"
               v-for="subcategory of currentCategory.children"
+              :to="`/subcategory/${subcategory.id}`"
             >
               {{ subcategory.name }}
-            </div>
+            </NuxtLink>
+            <NuxtLink
+              class="mega-menu-categories__item"
+              :to="`/${currentSection[0].section}/${currentCategory.id}`"
+            >
+              Усі
+              {{ currentCategory.name }}
+            </NuxtLink>
           </div>
         </div>
       </div>
@@ -100,9 +119,11 @@ const toView = (collection) => {
   }
 
   return collection.map((collection) => {
+    console.log(collection);
     return {
       id: collection.id,
       name: collection.attributes.Name,
+      section: collection.attributes.section,
       children: !collection.attributes.pod_kategoriyas?.data.length
         ? null
         : collection.attributes.pod_kategoriyas?.data.map((subcategory) => {
@@ -137,8 +158,6 @@ export default {
       const foods = categories.data.filter(
         (category) => category.attributes.section === "food"
       );
-
-      console.log(pharm, foods);
 
       const pharmForView = toView(pharm);
       const foodsForView = toView(foods);

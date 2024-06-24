@@ -2,23 +2,23 @@
 <template>
   <div class="category-page">
     <Head>
-      <Title>Використання</Title>
-      <Meta name="og:title" :content="` Indredients`" />
+      <Title>{{ sections[section] }}</Title>
+      <Meta name="og:title" :content="sections[section]" />
       <Meta name="og:image" content="/images/banners/ingredients.jpeg" />
     </Head>
     <div class="container">
       <AppPageBanner
-        title="Використання"
+        :title="sections[section]"
         img="/images/banners/ingredients.jpeg"
       />
 
       <div class="row categories-list gy-5">
-        <div class="col-12 col-lg-4" v-for="category of ingredientsForView">
+        <div class="col-12 col-lg-4" v-for="category of categoriesForView">
           <NuxtLink
             class="category-card__link"
             :to="
               category.children && category.children.length
-                ? `/applications/${category.id}`
+                ? `/${section}/${category.id}`
                 : `/category/${category.id}`
             "
           >
@@ -61,18 +61,26 @@ export default {
     try {
       const { find } = useStrapi();
       const media = useStrapiMedia();
+      const route = useRoute();
 
+      const sections = {
+        pharm: "Фармацевтичні інгредієнти",
+        food: "Харчові інгредієнти",
+      };
+      console.log("route.query.section", route.query.section);
       const categories = await find("categories", { populate: "*" });
 
-      const ingredients = categories.data.filter(
-        (category) => category.attributes.section === "application"
+      const currentCategories = categories.data.filter(
+        (category) => category.attributes.section === route.query.section
       );
 
-      const ingredientsForView = toView(ingredients);
+      const categoriesForView = toView(currentCategories);
 
       return {
-        ingredientsForView,
+        categoriesForView,
         media,
+        section: route.query.section,
+        sections,
       };
     } catch (error) {
       console.log(error);
