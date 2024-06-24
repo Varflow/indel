@@ -2,125 +2,33 @@
   <NuxtLink to="/company" class="header-menu__link" v-if="menu">
     {{ menu.first_menu_item }}
   </NuxtLink>
-  <div class="header-menu__link" v-if="ingredientsForView">
-    <NuxtLink to="/ingredients" v-if="menu">
-      <div class="header-menu__link-label">
-        {{ menu.second_menu_item }}
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          id="Outline"
-          viewBox="0 0 24 24"
-          width="512"
-          height="512"
-        >
-          <path
-            d="M18.71,8.21a1,1,0,0,0-1.42,0l-4.58,4.58a1,1,0,0,1-1.42,0L6.71,8.21a1,1,0,0,0-1.42,0,1,1,0,0,0,0,1.41l4.59,4.59a3,3,0,0,0,4.24,0l4.59-4.59A1,1,0,0,0,18.71,8.21Z"
-          />
-        </svg>
-      </div>
-    </NuxtLink>
-    <div class="header-menu-dropdown header-menu-categories">
-      <div class="header-menu__link" v-for="category of ingredientsForView">
-        <NuxtLink
-          :to="`/ingredients/${category.id}`"
-          class="header-menu__link-label"
-          v-if="category.children"
-        >
-          {{ category.name }}
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            id="Outline"
-            viewBox="0 0 24 24"
-            width="512"
-            height="512"
-          >
-            <path
-              d="M18.71,8.21a1,1,0,0,0-1.42,0l-4.58,4.58a1,1,0,0,1-1.42,0L6.71,8.21a1,1,0,0,0-1.42,0,1,1,0,0,0,0,1.41l4.59,4.59a3,3,0,0,0,4.24,0l4.59-4.59A1,1,0,0,0,18.71,8.21Z"
-            />
-          </svg>
-        </NuxtLink>
-        <NuxtLink v-else :to="`/category/${category.id}`">
-          {{ category.name }}
-        </NuxtLink>
-        <div
-          class="header-menu-dropdown header-menu-subcategories"
-          v-if="category.children"
-        >
-          <NuxtLink
-            v-for="subcategory of category.children"
-            :to="`/subcategory/${subcategory.id}`"
-            class="header-menu__link"
-          >
-            {{ subcategory.name }}
-          </NuxtLink>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="header-menu__link" v-if="applicationsForView">
-    <NuxtLink to="/applications" v-if="menu">
-      <div class="header-menu__link-label">
-        {{ menu.third_menu_item }}
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          id="Outline"
-          viewBox="0 0 24 24"
-          width="512"
-          height="512"
-        >
-          <path
-            d="M18.71,8.21a1,1,0,0,0-1.42,0l-4.58,4.58a1,1,0,0,1-1.42,0L6.71,8.21a1,1,0,0,0-1.42,0,1,1,0,0,0,0,1.41l4.59,4.59a3,3,0,0,0,4.24,0l4.59-4.59A1,1,0,0,0,18.71,8.21Z"
-          />
-        </svg>
-      </div>
-    </NuxtLink>
-    <div class="header-menu-dropdown header-menu-categories">
-      <div class="header-menu__link" v-for="category of applicationsForView">
-        <NuxtLink
-          :to="`/applications/${category.id}`"
-          class="header-menu__link-label"
-          v-if="category.children"
-        >
-          {{ category.name }}
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            id="Outline"
-            viewBox="0 0 24 24"
-            width="512"
-            height="512"
-          >
-            <path
-              d="M18.71,8.21a1,1,0,0,0-1.42,0l-4.58,4.58a1,1,0,0,1-1.42,0L6.71,8.21a1,1,0,0,0-1.42,0,1,1,0,0,0,0,1.41l4.59,4.59a3,3,0,0,0,4.24,0l4.59-4.59A1,1,0,0,0,18.71,8.21Z"
-            />
-          </svg>
-        </NuxtLink>
-        <NuxtLink v-else :to="`/category/${category.id}`">
-          {{ category.name }}
-        </NuxtLink>
-        <div
-          class="header-menu-dropdown header-menu-subcategories"
-          v-if="category.children"
-        >
-          <NuxtLink
-            v-for="subcategory of category.children"
-            :to="`/subcategory/${subcategory.id}`"
-            class="header-menu__link"
-          >
-            {{ subcategory.name }}
-          </NuxtLink>
-        </div>
-      </div>
+  <div class="header-menu__link" @click="toggleMegaMenu">
+    <div class="header-menu__link-label">
+      {{ menu.second_menu_item }}
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        id="Outline"
+        viewBox="0 0 24 24"
+        width="512"
+        height="512"
+      >
+        <path
+          d="M18.71,8.21a1,1,0,0,0-1.42,0l-4.58,4.58a1,1,0,0,1-1.42,0L6.71,8.21a1,1,0,0,0-1.42,0,1,1,0,0,0,0,1.41l4.59,4.59a3,3,0,0,0,4.24,0l4.59-4.59A1,1,0,0,0,18.71,8.21Z"
+        />
+      </svg>
     </div>
   </div>
   <NuxtLink to="/partners" class="header-menu__link" v-if="menu">
-    {{ menu.fourth_menu_item }}
+    {{ menu.third_menu_item }}
   </NuxtLink>
   <NuxtLink to="/news" class="header-menu__link">
-    {{ menu.fifth_menu_item }}
+    {{ menu.fourth_menu_item }}
   </NuxtLink>
   <NuxtLink to="/contact-us" class="header-menu__link">
-    {{ menu.sixth_menu_item }}
+    {{ menu.fifth_menu_item }}
   </NuxtLink>
+
+  <AppMegaMenu :shown="shownMegaMenu" />
 </template>
 
 <script>
@@ -146,6 +54,11 @@ const toView = (collection) => {
 };
 
 export default {
+  data() {
+    return {
+      shownMegaMenu: false,
+    };
+  },
   async setup() {
     try {
       const { find } = useStrapi();
@@ -170,6 +83,12 @@ export default {
     } catch (error) {
       console.log(error);
     }
+  },
+
+  methods: {
+    toggleMegaMenu() {
+      this.shownMegaMenu = !this.shownMegaMenu;
+    },
   },
 };
 </script>
