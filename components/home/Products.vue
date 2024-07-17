@@ -59,11 +59,10 @@
       }"
     >
       <swiper-slide v-for="product of productsForView">
-        <ProductCard
-          :id="product.id"
+        <ProductHomeCard
           :name="product.name"
-          :category="product.category"
           :image="`${media}${product.image?.url}`"
+          :link="product.link"
         />
       </swiper-slide>
     </swiper>
@@ -103,17 +102,15 @@ export default {
       const media = useStrapiMedia();
       const { find } = useStrapi();
 
-      const products = await find("tovaries", {
+      const products = await find("tovary-glavnayas", {
         populate: "*",
-        pagination: { limit: 10 },
       });
 
       const productsForView = products.data.map((product) => {
         return {
-          id: product.id,
           image: product.attributes.image.data?.attributes,
           name: product.attributes.name,
-          category: product.attributes.pod_kategoriya?.data.attributes.name,
+          link: product.attributes.link,
         };
       });
 

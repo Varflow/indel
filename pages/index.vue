@@ -1,31 +1,21 @@
 <template>
-  <div class="home-page">
-    <Head>
-      <Title>Indel</Title>
-      <Link rel="canonical" href="https://chempha.com" />
-      <Meta
-        name="google-site-verification"
-        content="t5h28M5twka3Ii02_z1gXTKtr-UN0KOGhHbq619dCbQ"
-      />
-    </Head>
-    <BannersMain />
-    <HomeDepartments :texts="texts" />
-    <HomeProducts :texts="texts" />
-    <HomePosts :texts="texts" />
-    <HomeVideos :texts="texts" />
+  <div class="main-page">
+    <div class="main-page__header">
+      <NuxtLink to="/main" class="main-page__logo">
+        <MainLogo />
+      </NuxtLink>
+    </div>
+
+    <div class="main-page__departments">
+      <div class="container">
+        <DepartmentsList />
+      </div>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-export default {
-  async setup() {
-    const { findOne } = useStrapi();
-
-    const globalTexts = await findOne("teksty");
-
-    return {
-      texts: globalTexts.data.attributes,
-    };
-  },
-};
+definePageMeta({
+  layout: "outside",
+});
 </script>

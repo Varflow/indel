@@ -3,7 +3,7 @@
     <DepartmentsCard
       v-for="department in departments"
       :name="department.name"
-      :image="department.image"
+      :video="department.video"
       :link="department.link"
     />
   </div>
@@ -14,26 +14,36 @@ import orderby from "lodash.orderby";
 
 export default {
   async setup() {
-    const media = useStrapiMedia();
-    const { find } = useStrapi();
+    const departments = [
+      { name: "Фармацевтика", video: "/videos/pharm.mp4", link: "" },
+      { name: "Харчова", video: "/videos/food.mp4", link: "" },
+      { name: "Косметика", video: "/videos/cosm.mp4", link: "" },
+    ];
 
-    const departments = await find("napravleniyas", {
-      populate: "*",
-    });
+    // const media = useStrapiMedia();
+    // const { find } = useStrapi();
 
-    console.log(departments);
+    // const departments = await find("napravleniyas", {
+    //   populate: "*",
+    // });
 
-    const departmentsForView = departments.data.map((department) => {
-      return {
-        ...department.attributes,
-        image: `${media}${department.attributes.image.data?.attributes.url}`,
-      };
-    });
+    // console.log(departments);
 
-    const orderedDepartments = orderby(departmentsForView, ["order"], ["asc"]);
+    // const departmentsForView = departments.data.map((department) => {
+    //   return {
+    //     ...department.attributes,
+    //     image: `${media}${department.attributes.image.data?.attributes.url}`,
+    //   };
+    // });
+
+    // const orderedDepartments = orderby(departmentsForView, ["order"], ["asc"]);
+
+    // return {
+    //   departments: orderedDepartments,
+    // };
 
     return {
-      departments: orderedDepartments,
+      departments,
     };
   },
 };
