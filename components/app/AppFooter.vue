@@ -25,53 +25,17 @@
             class="footer-col__item"
             >www.indel.com.ua</a
           >
-        </div>
-      </div>
-      <div class="col-lg-4">
-        <h4 class="footer-col__title">Інгредієнти</h4>
-        <div class="footer-col__list">
-          <NuxtLink
-            v-for="category of ingredientsForView"
-            :to="
-              Boolean(category.children?.length)
-                ? `/ingredients/${category.id}`
-                : `/category/${category.id}`
-            "
-            class="footer-col__item"
-          >
-            {{ category.name }}
-          </NuxtLink>
-          <NuxtLink
-            v-if="hasMaxIngrediests"
-            to="/ingredients"
-            class="footer-col__item"
-          >
-            Всі інгредієнти
-          </NuxtLink>
-        </div>
-      </div>
-
-      <div class="col-lg-4">
-        <h4 class="footer-col__title">Використання</h4>
-        <div class="footer-col__list">
-          <NuxtLink
-            v-for="category of applicationsForView"
-            :to="
-              Boolean(category.children?.length)
-                ? `/applications/${category.id}`
-                : `/category/${category.id}`
-            "
-            class="footer-col__item"
-          >
-            {{ category.name }}
-          </NuxtLink>
-          <NuxtLink
-            v-if="hasMaxApplications"
-            to="/applications"
-            class="footer-col__item"
-          >
-            Всі продукти
-          </NuxtLink>
+          <div class="footer-socials">
+            <NuxtLink to="https://youtube.com" class="footer-socials-item">
+              <img src="/images/icons/instagram.svg" alt="" />
+            </NuxtLink>
+            <NuxtLink to="https://youtube.com" class="footer-socials-item">
+              <img src="/images/icons/youtube.svg" alt="" />
+            </NuxtLink>
+            <NuxtLink to="https://youtube.com" class="footer-socials-item">
+              <img src="/images/icons/facebook.svg" alt="" />
+            </NuxtLink>
+          </div>
         </div>
       </div>
     </div>
