@@ -8,7 +8,7 @@
 
     <div class="main-page__departments">
       <div class="container">
-        <DepartmentsList />
+        <DepartmentsList :departments="departments" />
       </div>
     </div>
   </div>
@@ -18,4 +18,10 @@
 definePageMeta({
   layout: "outside",
 });
+
+const departments = [
+  { name: "Фармацевтика", video: "/videos/1/pharm.mp4", link: "" },
+  { name: "Харчова", video: "/videos/1/food.mp4", link: "" },
+  { name: "Косметика", video: "/videos/1/cosm.mp4", link: "" },
+];
 </script>

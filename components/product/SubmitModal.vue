@@ -3,7 +3,12 @@
     <form class="submit-modal__form" @submit.prevent="submit">
       <label class="form-field">
         Ім'я
-        <input type="text" class="form-field__input" required v-model="name" />
+        <input
+          type="text"
+          class="form-field__input"
+          required
+          v-model="formData.name"
+        />
       </label>
       <label class="form-field">
         Email
@@ -11,16 +16,24 @@
           type="email"
           class="form-field__input"
           required
-          v-model="email"
+          v-model="formData.email"
         />
       </label>
       <label class="form-field">
         Тема
-        <input type="text" class="form-field__input" v-model="subject" />
+        <input
+          type="text"
+          class="form-field__input"
+          v-model="formData.subject"
+        />
       </label>
       <label class="form-field">
         Повідомлення
-        <textarea class="form-field__textarea" required v-model="message" />
+        <textarea
+          class="form-field__textarea"
+          required
+          v-model="formData.message"
+        />
       </label>
       <div class="submit-modal__actions">
         <AppButton variant="black" appearence="filled"
@@ -31,53 +44,45 @@
   </AppModal>
 </template>
 
-<script>
+<script setup>
 import Micromodal from "micromodal";
 
-export default {
-  props: ["title"],
-  data() {
-    return {
-      name: "",
-      email: "",
-      subject: "",
-      message: "",
-    };
-  },
-  methods: {
-    async submit() {
-      try {
-        const client = useStrapiClient();
-        const config = useRuntimeConfig();
+const props = defineProps(["title"]);
 
-        const formData = this.$data;
+const formData = reactive({
+  name: "",
+  email: "",
+  message: "",
+});
 
-        client("/email", {
-          method: "POST",
-          body: {
-            to: config.public.mailTo,
-            subject: "Заявка с сайта",
-            html: `
+const submit = async () => {
+  try {
+    const config = useRuntimeConfig();
+
+    await useFetch("/api/mail", {
+      method: "POST",
+      body: {
+        to: config.public.mailTo,
+        subject: "Заявка с сайта",
+        html: `
             <h1>${formData.name} надіслав запит із сайту Indel на товар ${this.title}</h1>
-            <p><b>Тема</b>: ${formData.subject}</p>
+            <p><b>Тема</b>: "Заявка на товар"</p>
             <p><b>Email</b>: ${formData.email}</p>
             <p><b>Повідомлення</b>: ${formData.message}</p>
           `,
-          },
-        });
+      },
+    });
 
-        Micromodal.close("submit-modal");
-        Micromodal.show("success-modal");
-        setTimeout(() => {
-          Micromodal.close("success-modal");
-        }, 5000);
-      } catch (error) {
-        Micromodal.show("error-modal");
-        setTimeout(() => {
-          Micromodal.close("error-modal");
-        }, 5000);
-      }
-    },
-  },
+    Micromodal.close("submit-modal");
+    Micromodal.show("success-modal");
+    setTimeout(() => {
+      Micromodal.close("success-modal");
+    }, 5000);
+  } catch (error) {
+    Micromodal.show("error-modal");
+    setTimeout(() => {
+      Micromodal.close("error-modal");
+    }, 5000);
+  }
 };
 </script>

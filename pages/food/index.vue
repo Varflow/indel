@@ -4,12 +4,12 @@
     <Head>
       <Title>Харчові інгредієнти</Title>
       <Meta name="og:title" :content="`Харчові інгредієнти`" />
-      <Meta name="og:image" content="/images/banners/ingredients.jpeg" />
+      <Meta name="og:image" content="/images/banners/food_cover.jpg" />
     </Head>
     <div class="container">
       <AppPageBanner
         title="Харчові інгредієнти"
-        img="/images/banners/ingredients.jpeg"
+        img="/images/banners/food_cover.jpg"
       />
 
       <div class="row categories-list gy-5">

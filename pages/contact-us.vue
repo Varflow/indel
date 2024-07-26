@@ -24,7 +24,7 @@
                   type="text"
                   id="name"
                   required
-                  v-model="name"
+                  v-model="formData.name"
                 />
               </label>
               <label for="email" class="form-field col-12">
@@ -34,7 +34,7 @@
                   type="email"
                   id="email"
                   required
-                  v-model="email"
+                  v-model="formData.email"
                 />
               </label>
             </div>
@@ -42,7 +42,7 @@
               Ваше повідомлення
               <textarea
                 id="message"
-                v-model="message"
+                v-model="formData.message"
                 class="form-field__textarea"
               />
             </label>
@@ -86,49 +86,39 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import Micromodal from "micromodal";
-export default {
-  data() {
-    return {
-      name: "",
-      email: "",
-      message: "",
-    };
-  },
 
-  methods: {
-    async submit() {
-      try {
-        const client = useStrapiClient();
-        const config = useRuntimeConfig();
+const formData = reactive({
+  name: "",
+  email: "",
+  message: "",
+});
 
-        const formData = this.$data;
-
-        await client("/email", {
-          method: "POST",
-          body: {
-            to: config.public.mailTo,
-            subject: "Application from site (Contact Us)",
-            html: `
-            <p><b>Name</b>: ${formData.name}</p>
+const submit = async () => {
+  try {
+    await useFetch("/api/mail", {
+      method: "POST",
+      body: {
+        subject: "Заявка с сайта",
+        html: `
+            <h1>${formData.name} надіслав запит із сайту Indel. Зв'яжіться з ним</h1>
+            <p><b>Тема</b>: "Форма зворотнього зв'зку "</p>
             <p><b>Email</b>: ${formData.email}</p>
-            <p><b>Message</b>: ${formData.message}</p>
+            <p><b>Повідомлення</b>: ${formData.message}</p>
           `,
-          },
-        });
+      },
+    });
 
-        Micromodal.show("success-modal");
-        setTimeout(() => {
-          Micromodal.close("success-modal");
-        }, 5000);
-      } catch (error) {
-        Micromodal.show("error-modal");
-        setTimeout(() => {
-          Micromodal.close("error-modal");
-        }, 5000);
-      }
-    },
-  },
+    Micromodal.show("success-modal");
+    setTimeout(() => {
+      Micromodal.close("success-modal");
+    }, 5000);
+  } catch (error) {
+    Micromodal.show("error-modal");
+    setTimeout(() => {
+      Micromodal.close("error-modal");
+    }, 5000);
+  }
 };
 </script>
