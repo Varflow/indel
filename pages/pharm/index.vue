@@ -9,7 +9,7 @@
     <div class="container">
       <AppPageBanner
         title="Фармацевтичні інгредієнти"
-        img="/images/banners/pharm_cover.png"
+        img="/images/banners/pharm_cover.jpg"
       />
 
       <div class="row categories-list gy-5">
