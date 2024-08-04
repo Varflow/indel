@@ -3,7 +3,7 @@
     <div class="arrow"></div>
     <div class="container">
       <!-- <div class="mega-menu__title">Інгредієнти</div> -->
-      <div class="mega-menu__row" v-click-outside="onClickOutside">
+      <div class="mega-menu__row">
         <div class="mega-menu__column">
           <div class="mega-menu-sections__list">
             <div
