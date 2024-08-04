@@ -13,8 +13,6 @@
     "@nuxt/image": "^1.0.0-rc.1",
     "@nuxtjs/strapi": "^1.9.3",
     "@types/node": "^18.17.0",
-    "@vueuse/core": "^10.11.0",
-    "@vueuse/nuxt": "^10.11.0",
     "nuxt": "^3.6.5",
     "nuxt-simple-sitemap": "^3.1.4",
     "sass": "^1.64.1"
