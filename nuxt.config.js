@@ -13,12 +13,7 @@ export default defineNuxtConfig({
   },
 
   devtools: { enabled: true },
-  modules: [
-    "@nuxtjs/strapi",
-    "@nuxt/image",
-    "@vueuse/nuxt",
-    "nuxt-simple-sitemap",
-  ],
+  modules: ["@nuxtjs/strapi", "@nuxt/image", "nuxt-simple-sitemap"],
   plugins: ["~/plugins/click-outside.ts"],
   css: ["~/assets/scss/main.scss"],
 

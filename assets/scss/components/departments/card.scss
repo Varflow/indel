@@ -6,7 +6,8 @@
   margin-top: 24px;
 
   @media screen and (max-width: 768px) {
-    row-gap: 24px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    row-gap: 12px;
   }
 }
 
@@ -74,17 +75,17 @@
     justify-content: center;
 
     width: 100%;
-    height: 65vh;
+    height: 75vh;
 
     position: relative;
 
-    // transform: translateY(100%);
     opacity: 0;
 
     animation: showContent 1.5s ease 0.05s 1 both;
 
     @media screen and (max-width: 768px) {
       animation: showContentMobile 1.5s ease 0.05s 1 both;
+      height: 26vh;
     }
 
     &:before {
@@ -118,6 +119,10 @@
     text-transform: uppercase;
 
     transition: all 0.5s ease;
+
+    @media screen and (max-width: 768px) {
+      font-size: 24px;
+    }
   }
 
   &__button {

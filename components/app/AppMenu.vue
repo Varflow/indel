@@ -28,9 +28,8 @@
     {{ menu.fifth_menu_item }}
   </NuxtLink>
   <NuxtLink to="/contact-us" class="header-menu__link">
-    {{ menu.six_menu_item }}
+    {{ menu.sixth_menu_item }}
   </NuxtLink>
-  
 
   <AppMegaMenu :shown="shownMegaMenu" @close="closeMegaMenu" />
 </template>

@@ -19,21 +19,25 @@
     align-items: center;
     justify-content: center;
 
-    padding: 8vh 0;
+    padding: 4vh 0;
+
+    @media screen and (max-width: 768px) {
+      padding-bottom: 0;
+    }
   }
 
   &__logo {
     display: block;
-    width: 20vw;
+    width: 12vw;
 
-    margin-right: 5vw;
+    margin-right: 2vw;
 
     opacity: 0;
     animation: showLogo 2s 0.5s ease 1 both;
     transition: transform 0.5s ease;
 
     @media screen and (max-width: 768px) {
-      width: 50vw;
+      width: 35vw;
     }
 
     &:hover {
