@@ -35,12 +35,12 @@
         transition: color 0.25s ease;
 
         &:hover {
-          color: $accent;
+          color: #2a5ca7;
         }
       }
 
       &:hover {
-        color: $accent;
+        color: #2a5ca7;
 
         & > .header-menu-dropdown {
           opacity: 1;
