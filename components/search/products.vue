@@ -1,5 +1,5 @@
 <template>
-  <div class="search-container">
+  <div class="search-container" :class="this.classes">
     <input
       type="text"
       class="search-container__input"
@@ -28,6 +28,7 @@
 
 <script lang="js">
 export default {
+  props: ["classes"],
   emits: ["search"],
   data() {
     return {

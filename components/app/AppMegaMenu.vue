@@ -54,6 +54,17 @@
         </div>
         <div class="col-4" v-if="currentSection">
           <div class="mega-menu-categories__list">
+            <NuxtLink
+              class="mega-menu-categories__item"
+              :to="`/${currentSection[0].section}/`"
+            >
+              Усі
+              {{
+                currentSection[0].section === "food"
+                  ? "харчові інгредієнти"
+                  : "фармацевтичні інгредієнти"
+              }}
+            </NuxtLink>
             <div
               class="mega-menu-categories__item"
               v-for="category of currentSection"
@@ -76,34 +87,23 @@
                 />
               </svg>
             </div>
-            <NuxtLink
-              class="mega-menu-categories__item"
-              :to="`/${currentSection[0].section}/`"
-            >
-              Усі
-              {{
-                currentSection[0].section === "food"
-                  ? "Xарчові інгредієнти"
-                  : "Фармацевтичні інгредієнти"
-              }}
-            </NuxtLink>
           </div>
         </div>
         <div class="col-4" v-if="currentCategory">
           <div class="mega-menu-categories__list">
             <NuxtLink
               class="mega-menu-categories__item"
-              v-for="subcategory of currentCategory.children"
-              :to="`/subcategory/${subcategory.id}`"
-            >
-              {{ subcategory.name }}
-            </NuxtLink>
-            <NuxtLink
-              class="mega-menu-categories__item"
               :to="`/${currentSection[0].section}/${currentCategory.id}`"
             >
               Усі
               {{ currentCategory.name }}
+            </NuxtLink>
+            <NuxtLink
+              class="mega-menu-categories__item"
+              v-for="subcategory of currentCategory.children"
+              :to="`/subcategory/${subcategory.id}`"
+            >
+              {{ subcategory.name }}
             </NuxtLink>
           </div>
         </div>
@@ -119,7 +119,6 @@ const toView = (collection) => {
   }
 
   return collection.map((collection) => {
-    console.log(collection);
     return {
       id: collection.id,
       name: collection.attributes.Name,

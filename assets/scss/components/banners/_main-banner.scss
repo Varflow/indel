@@ -7,7 +7,7 @@ $headerHeight: 60px;
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: min(calc(100vh - $headerHeight), calc(100vh - $headerHeight));
+    height: min(calc(85vh - $headerHeight), calc(85vh - $headerHeight));
 
     position: relative;
     z-index: 1;

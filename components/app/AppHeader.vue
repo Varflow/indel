@@ -9,7 +9,7 @@
         </div>
       </div>
       <div class="col-6 col-lg-2">
-        <NuxtLink @click="close" to="/">
+        <NuxtLink @click="close" to="/main">
           <img src="/images/logo.svg" alt="" class="header-logo" />
         </NuxtLink>
       </div>

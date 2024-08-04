@@ -2,11 +2,28 @@
   <footer class="footer container">
     <div class="row gy-5">
       <div class="col-lg-4">
-        <h4 class="footer-col__title">Контакти</h4>
+        <h4 class="footer-col__title">Адреса</h4>
         <div class="footer-col__list">
           <div class="footer-col__item">ТОВ "Індел"</div>
           <div class="footer-col__item">Вул. М. Грушевського,39Д</div>
           <div class="footer-col__item">Одеса, 650031, Україна</div>
+
+          <div class="footer-socials">
+            <NuxtLink to="https://youtube.com" class="footer-socials-item">
+              <img src="/images/icons/instagram.svg" alt="" />
+            </NuxtLink>
+            <NuxtLink to="https://youtube.com" class="footer-socials-item">
+              <img src="/images/icons/youtube.svg" alt="" />
+            </NuxtLink>
+            <NuxtLink to="https://youtube.com" class="footer-socials-item">
+              <img src="/images/icons/facebook.svg" alt="" />
+            </NuxtLink>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <h4 class="footer-col__title">Контакти</h4>
+        <div class="footer-col__list">
           <a href="tel:+380 48 701-33-89" class="footer-col__item"
             >Tel./fax: +380 48 701-33-89</a
           >
@@ -25,17 +42,26 @@
             class="footer-col__item"
             >www.indel.com.ua</a
           >
-          <div class="footer-socials">
-            <NuxtLink to="https://youtube.com" class="footer-socials-item">
-              <img src="/images/icons/instagram.svg" alt="" />
-            </NuxtLink>
-            <NuxtLink to="https://youtube.com" class="footer-socials-item">
-              <img src="/images/icons/youtube.svg" alt="" />
-            </NuxtLink>
-            <NuxtLink to="https://youtube.com" class="footer-socials-item">
-              <img src="/images/icons/facebook.svg" alt="" />
-            </NuxtLink>
-          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <!-- <h4 class="footer-col__title">Контакти</h4> -->
+        <div class="footer-col__list">
+          <NuxtLink
+            to="https://indelcosm.com.ua"
+            target="_blank"
+            class="footer-col__item"
+          >
+            Косметичні інгредієнти
+          </NuxtLink>
+          <NuxtLink to="/pharm" class="footer-col__item">
+            Фармацевтичні інгредієнти
+          </NuxtLink>
+          <NuxtLink to="/food" class="footer-col__item">
+            Харчові інгредієнти
+          </NuxtLink>
+          <NuxtLink to="#" class="footer-col__item"> Вакансії </NuxtLink>
+          <SearchProducts classes="footer-search" />
         </div>
       </div>
     </div>

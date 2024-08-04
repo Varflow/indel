@@ -105,3 +105,20 @@
     width: 100%;
   }
 }
+
+// ------------------------------
+// Search Footer
+// ------------------------------
+
+.search-container.footer-search {
+  justify-content: flex-start;
+  margin-top: 5%;
+
+  .search-container__input {
+    background-color: transparent;
+  }
+
+  .search-container__icon {
+    right: 26%;
+  }
+}
