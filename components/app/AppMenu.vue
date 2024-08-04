@@ -18,17 +18,21 @@
       </svg>
     </div>
   </div>
-  <NuxtLink to="/partners" class="header-menu__link" v-if="menu">
+  <NuxtLink to="/" class="header-menu__link">
     {{ menu.third_menu_item }}
   </NuxtLink>
-  <NuxtLink to="/news" class="header-menu__link">
+  <NuxtLink to="/partners" class="header-menu__link" v-if="menu">
     {{ menu.fourth_menu_item }}
   </NuxtLink>
-  <NuxtLink to="/contact-us" class="header-menu__link">
+  <NuxtLink to="/news" class="header-menu__link">
     {{ menu.fifth_menu_item }}
   </NuxtLink>
+  <NuxtLink to="/contact-us" class="header-menu__link">
+    {{ menu.six_menu_item }}
+  </NuxtLink>
+  
 
-  <AppMegaMenu :shown="shownMegaMenu" />
+  <AppMegaMenu :shown="shownMegaMenu" @close="closeMegaMenu" />
 </template>
 
 <script>
@@ -88,6 +92,9 @@ export default {
   methods: {
     toggleMegaMenu() {
       this.shownMegaMenu = !this.shownMegaMenu;
+    },
+    closeMegaMenu() {
+      this.shownMegaMenu = false;
     },
   },
 };

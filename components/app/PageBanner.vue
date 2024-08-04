@@ -4,9 +4,8 @@
     :class="{ 'with-image': img && !img.includes('undefined') }"
   >
     <img
-      :src="img"
       v-if="Boolean(img && !img.includes('undefined'))"
-      alt=""
+      :src="img"
       class="page-banner__img"
     />
     <h3 class="page-banner__title">{{ title }}</h3>

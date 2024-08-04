@@ -7,7 +7,7 @@
       <Meta name="og:image" :content="`${media}${categoryBanner?.url}`" />
     </Head>
     <div class="container">
-      <AppPageBanner :title="title" :img="categoryBanner" />
+      <AppPageBanner :title="title" :img="`${media}${categoryBanner?.url}`" />
 
       <div class="row categories-list gy-5">
         <div class="col-12 col-lg-4" v-for="subcategory of subcategories">
@@ -26,6 +26,7 @@
   </div>
 </template>
 <script>
+import orderBy from "lodash.orderby";
 const toView = (collection) => {
   if (!collection) {
     return [];
@@ -36,6 +37,7 @@ const toView = (collection) => {
       id: collection.id,
       name: collection.attributes.name,
       image: collection.attributes.image.data?.attributes.url,
+      order: collection.attributes.order,
     };
   });
 };
@@ -62,11 +64,12 @@ export default {
       const subcategories = toView(
         category.data.attributes.pod_kategoriyas?.data
       );
+      const orderedSubcategories = orderBy(subcategories, "order");
 
       return {
         title,
         categoryBanner,
-        subcategories,
+        subcategories: orderedSubcategories,
         media,
       };
     } catch (error) {

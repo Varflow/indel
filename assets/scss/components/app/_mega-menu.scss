@@ -1,26 +1,64 @@
 .mega-menu {
-  width: 100vw;
-  height: 500px;
+  width: fit-content;
+  max-height: 35vh;
 
-  padding: 24px 0;
+  padding: 24px 16px;
 
   position: absolute;
-  top: 120px;
-  left: 0;
+  top: 100px;
+  left: 50%;
+  translate: -50%;
   z-index: -10000;
   opacity: 0;
 
   background-color: #fff;
-  transition: opacity 0.3s ease;
+  // transition: opacity 0.3s ease, width 0.25s ease;
+  transition: 0.5s;
+  border-radius: 10px;
+
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 
   &.mega-menu--shown {
     z-index: 10000;
     opacity: 1;
   }
 
+  .arrow {
+    position: absolute;
+    top: -15px;
+    left: 60%;
+    translate: -60%;
+
+    width: 0;
+    height: 0;
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    border-bottom: 25px solid #fff;
+  }
+
+  &__column {
+    // display: flex;
+    // flex: 1 1 max-content;
+  }
+
   &-sections__list {
     display: flex;
     flex-direction: column;
+    row-gap: 24px;
+    overflow-y: auto;
+    transition: 0.5s;
+  }
+
+  &__row {
+    width: fit-content;
+
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(auto-fit, max-content);
+    grid-auto-flow: column;
+    column-gap: 4vw;
+
+    transition: 0.5s;
   }
 
   &__title {
@@ -35,14 +73,12 @@
   &__section-item {
     display: flex;
     align-items: center;
-    column-gap: 16px;
+    column-gap: 14px;
 
     font-family: $montserrat;
     font-weight: 600;
-    font-size: 18px;
+    font-size: 20px;
     color: $black;
-
-    margin-bottom: 28px;
 
     text-decoration: none;
     cursor: pointer;
@@ -67,7 +103,7 @@
 
     font-family: $montserrat;
     font-weight: 600;
-    font-size: 14px;
+    font-size: 16px;
     color: $black;
 
     cursor: pointer;

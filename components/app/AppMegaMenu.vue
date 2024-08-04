@@ -1,10 +1,11 @@
 <template>
-  <div class="mega-menu" :class="{ 'mega-menu--shown': shown }">
+  <div ref="megaMenu" class="mega-menu" :class="{ 'mega-menu--shown': shown }">
+    <div class="arrow"></div>
     <div class="container">
-      <div class="row">
-        <div class="col-3">
+      <!-- <div class="mega-menu__title">Інгредієнти</div> -->
+      <div class="mega-menu__row" v-click-outside="onClickOutside">
+        <div class="mega-menu__column">
           <div class="mega-menu-sections__list">
-            <div class="mega-menu__title">Інгредієнти</div>
             <div
               class="mega-menu__section-item"
               @click="selectSection('pharm')"
@@ -52,8 +53,8 @@
             </a>
           </div>
         </div>
-        <div class="col-4" v-if="currentSection">
-          <div class="mega-menu-categories__list">
+        <div class="mega-menu__column" v-if="currentSection">
+          <div class="mega-menu-categories__list" v-if="currentSection">
             <NuxtLink
               class="mega-menu-categories__item"
               :to="`/${currentSection[0].section}/`"
@@ -89,8 +90,8 @@
             </div>
           </div>
         </div>
-        <div class="col-4" v-if="currentCategory">
-          <div class="mega-menu-categories__list">
+        <div class="mega-menu__column" v-if="currentCategory">
+          <div class="mega-menu-categories__list" v-if="currentCategory">
             <NuxtLink
               class="mega-menu-categories__item"
               :to="`/${currentSection[0].section}/${currentCategory.id}`"
@@ -137,6 +138,7 @@ const toView = (collection) => {
 
 export default {
   props: ["shown"],
+  emits: ["close"],
   data() {
     return {
       currentSection: null,
@@ -178,6 +180,9 @@ export default {
       this.currentCategory = this.currentSection.find(
         (category) => category.name === name
       );
+    },
+    onClickOutside() {
+      this.$emit("close");
     },
   },
 };
