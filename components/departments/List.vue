@@ -5,6 +5,7 @@
       :name="department.name"
       :video="department.video"
       :link="department.link"
+      :center="department.center"
     />
   </div>
 </template>
@@ -12,17 +13,6 @@
 <script>
 export default {
   props: ["departments"],
-  // async setup() {
-  //   const departments = [
-  //     { name: "Фармацевтика", video: "/videos/pharm.mp4", link: "" },
-  //     { name: "Харчова", video: "/videos/food.mp4", link: "" },
-  //     { name: "Косметика", video: "/videos/cosm.mp4", link: "" },
-  //   ];
-
-  //   return {
-  //     departments,
-  //   };
-  // },
 };
 </script>
 

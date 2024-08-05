@@ -18,7 +18,7 @@
         class="company-banner__image"
       />
       <h2 class="company-banner__title" v-if="texts">
-        {{ texts.title }}
+        {{ companyInfo.title }}
       </h2>
     </div>
 
@@ -28,17 +28,17 @@
           class="col-12 col-lg-6 company-content__image"
           data-aos="fade-right"
         >
-          <img src="/images/banners/company/company-1.jpg" alt="" />
+          <img :src="companyInfo.first_image" alt="" />
         </div>
 
         <div class="col-12 col-lg-6 company-content__info" data-aos="fade-left">
           <h3 class="company-content__title" v-if="texts">
-            {{ texts.first_block_title }}
+            {{ companyInfo.first_block_title }}
           </h3>
           <p
             class="company-content__text"
-            v-if="texts"
-            v-html="texts.first_block_text"
+            v-if="companyInfo"
+            v-html="companyInfo.first_block_text"
           ></p>
         </div>
       </div>
@@ -48,20 +48,20 @@
           class="col-12 col-lg-6 company-content__image"
           data-aos="fade-left"
         >
-          <img src="/images/banners/company/company-2.jpg" alt="" />
+          <img :src="companyInfo.second_image" alt="" />
         </div>
 
         <div
           class="col-12 col-lg-6 company-content__info"
           data-aos="fade-right"
         >
-          <h3 class="company-content__title" v-if="texts">
-            {{ texts.second_block_title }}
+          <h3 class="company-content__title" v-if="companyInfo">
+            {{ companyInfo.second_block_title }}
           </h3>
           <p
             class="company-content__text"
-            v-if="texts"
-            v-html="texts.second_block_text"
+            v-if="companyInfo"
+            v-html="companyInfo.second_block_text"
           ></p>
         </div>
       </div>
@@ -71,17 +71,17 @@
           class="col-12 col-lg-6 company-content__image"
           data-aos="fade-right"
         >
-          <img src="/images/banners/company/company-3.jpg" alt="" />
+          <img :src="companyInfo.third_image" alt="" />
         </div>
 
         <div class="col-12 col-lg-6 company-content__info" data-aos="fade-left">
-          <h3 class="company-content__title" v-if="texts">
-            {{ texts.third_block_title }}
+          <h3 class="company-content__title" v-if="companyInfo">
+            {{ companyInfo.third_block_title }}
           </h3>
           <p
             class="company-content__text"
-            v-if="texts"
-            v-html="texts.third_block_text"
+            v-if="companyInfo"
+            v-html="companyInfo.third_block_text"
           ></p>
         </div>
       </div>
@@ -90,7 +90,9 @@
     <div class="section-team">
       <div class="container">
         <div class="section-header">
-          <h2 class="section-title" v-if="texts">{{ texts.our_team_title }}</h2>
+          <h2 class="section-title" v-if="companyInfo">
+            {{ companyInfo.our_team_title }}
+          </h2>
         </div>
 
         <div class="row team-list gy-5">
@@ -101,20 +103,6 @@
             <h4 class="team-item__name">{{ member.name }}</h4>
             <h5 class="team-item__post">{{ member.position }}</h5>
           </div>
-          <!-- <div class="col-lg-4 team-item">
-            <div class="team-item__avatar">
-              <img src="/images/team/team-2.png" alt="" />
-            </div>
-            <h4 class="team-item__name">Ms. Hriaznova Veronika</h4>
-            <h5 class="team-item__post">Ceo</h5>
-          </div>
-          <div class="col-lg-4 team-item">
-            <div class="team-item__avatar">
-              <img src="/images/team/team-3.png" alt="" />
-            </div>
-            <h4 class="team-item__name">Ms. Makarova Lubov</h4>
-            <h5 class="team-item__post">SALES MANAGER</h5>
-          </div> -->
         </div>
       </div>
     </div>
@@ -133,13 +121,22 @@ export default {
     const { findOne, find } = useStrapi();
     const media = useStrapiMedia();
 
-    const texts = await findOne("o-kompanii");
-    const team = await find("komandas", { populate: "*" });
-
-    console.log(team);
+    const companyInfo = await findOne("o-kompanii", {
+      populate: { first_image: "*", second_image: "*", third_image: "*" },
+    });
+    const team = await find("komandas", {
+      populate: {
+        avatar: "*",
+      },
+    });
 
     return {
-      texts: texts.data.attributes,
+      companyInfo: {
+        ...companyInfo.data.attributes,
+        first_image: `${media}${companyInfo?.data?.attributes?.first_image?.data?.attributes.url}`,
+        second_image: `${media}${companyInfo?.data?.attributes?.second_image?.data?.attributes.url}`,
+        third_image: `${media}${companyInfo?.data?.attributes?.third_image?.data?.attributes.url}`,
+      },
       team: team.data.map((member) => ({
         ...member.attributes,
         avatar: `${media}${member?.attributes?.avatar?.data?.attributes.url}`,
