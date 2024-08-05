@@ -24,10 +24,10 @@ const route = useRoute();
 const departments = [
   {
     name: "Фармацевтика",
-    video: `/videos/${route.params.id}/pharm.mp4`,
+    video: `/videos/2/pharm.mp4`,
     link: "",
   },
-  { name: "Харчова", video: `/videos/${route.params.id}/food.mp4`, link: "" },
+  { name: "Харчова", video: `/videos/2/food.mp4`, link: "" },
   { name: "Косметика", video: `/videos/${route.params.id}/cosm.mp4`, link: "" },
 ];
 </script>

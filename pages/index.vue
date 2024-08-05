@@ -20,8 +20,8 @@ definePageMeta({
 });
 
 const departments = [
-  { name: "Фармацевтика", video: "/videos/1/pharm.mp4", link: "" },
-  { name: "Харчова", video: "/videos/1/food.mp4", link: "" },
+  { name: "Фармацевтика", video: "/videos/2/pharm.mp4", link: "" },
+  { name: "Харчова", video: "/videos/2/food.mp4", link: "" },
   { name: "Косметика", video: "/videos/1/cosm.mp4", link: "" },
 ];
 </script>
