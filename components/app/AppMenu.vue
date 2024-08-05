@@ -3,7 +3,7 @@
     {{ menu.first_menu_item }}
   </NuxtLink>
   <div class="header-menu__link" @click="toggleMegaMenu">
-    <div class="header-menu__link-label">
+    <div class="header-menu__link-label" data-el="popover-trigger">
       {{ menu.second_menu_item }}
       <svg
         xmlns="http://www.w3.org/2000/svg"

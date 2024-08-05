@@ -1,15 +1,28 @@
 <template>
-  <div ref="megaMenu" class="mega-menu" :class="{ 'mega-menu--shown': shown }">
+  <div
+    ref="megaMenu"
+    class="mega-menu"
+    :class="{ 'mega-menu--shown': shown }"
+    data-el="menu"
+  >
     <div class="arrow"></div>
+    <img
+      src="/images/logo-icon.svg"
+      alt=""
+      class="decoration"
+      id="bottom-right"
+    />
+    <!-- <img src="/images/logo-icon.svg" alt="" class="decoration" id="top-right" /> -->
     <div class="container">
-      <!-- <div class="mega-menu__title">Інгредієнти</div> -->
       <div class="mega-menu__row">
         <div class="mega-menu__column">
           <div class="mega-menu-sections__list">
+            <!-- <div class="mega-menu__title">Інгредієнти</div> -->
             <div
               class="mega-menu__section-item"
               @click="selectSection('pharm')"
             >
+              <img src="/images/pill.png" alt="" class="section-item__icon" />
               Фармацевтичні
 
               <svg
@@ -28,6 +41,11 @@
               </svg>
             </div>
             <div class="mega-menu__section-item" @click="selectSection('food')">
+              <img
+                src="/images/vegetables.png"
+                alt=""
+                class="section-item__icon"
+              />
               Харчові
               <svg
                 width="14"
@@ -49,6 +67,11 @@
               class="mega-menu__section-item"
               target="_blank"
             >
+              <img
+                src="/images/cosmetics.png"
+                alt=""
+                class="section-item__icon"
+              />
               Косметичні
             </a>
           </div>
@@ -170,6 +193,36 @@ export default {
     }
   },
 
+  watch: {
+    shown: {
+      immediate: true,
+      handler(_shown) {
+        let onCloseTimeout;
+        let onOpenTimeout;
+
+        if (!_shown) {
+          onCloseTimeout = setTimeout(() => {
+            this.currentSection = null;
+            this.currentCategory = null;
+          }, 150);
+        }
+
+        if (_shown) {
+          onOpenTimeout = setTimeout(() => {
+            document.addEventListener("click", this.watchClickOutside);
+          }, 50);
+        }
+
+        if (!_shown) {
+          document.removeEventListener("click", this.watchClickOutside);
+        }
+
+        // clearTimeout(onCloseTimeout);
+        // clearTimeout(onOpenTimeout);
+      },
+    },
+  },
+
   methods: {
     selectSection(section) {
       this.currentCategory = null;
@@ -181,8 +234,15 @@ export default {
         (category) => category.name === name
       );
     },
-    onClickOutside() {
-      this.$emit("close");
+    watchClickOutside(event) {
+      console.log("event.target", event.target);
+      console.log(
+        "this.$refs.megaMenu.contains(event.target)",
+        this.$refs.megaMenu.contains(event.target)
+      );
+      if (!this.$refs.megaMenu.contains(event.target)) {
+        this.$emit("close");
+      }
     },
   },
 };
