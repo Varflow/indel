@@ -5,17 +5,29 @@
         <h4 class="footer-col__title">Адреса</h4>
         <div class="footer-col__list">
           <div class="footer-col__item">ТОВ "Індел"</div>
-          <div class="footer-col__item">Вул. М. Грушевського,39Д</div>
-          <div class="footer-col__item">Одеса, 650031, Україна</div>
+          <div class="footer-col__item">Вул. М. Грушевського, 39Д</div>
+          <div class="footer-col__item">Одеса, 65031, Україна</div>
 
           <div class="footer-socials">
-            <NuxtLink to="https://youtube.com" class="footer-socials-item">
+            <NuxtLink
+              to="https://instagram.com"
+              target="_blank"
+              class="footer-socials-item"
+            >
               <img src="/images/icons/instagram.svg" alt="" />
             </NuxtLink>
-            <NuxtLink to="https://youtube.com" class="footer-socials-item">
+            <NuxtLink
+              to="https://www.youtube.com/@indel385/videos"
+              target="_blank"
+              class="footer-socials-item"
+            >
               <img src="/images/icons/youtube.svg" alt="" />
             </NuxtLink>
-            <NuxtLink to="https://youtube.com" class="footer-socials-item">
+            <NuxtLink
+              to="https://www.facebook.com/indelcompany"
+              target="_blank"
+              class="footer-socials-item"
+            >
               <img src="/images/icons/facebook.svg" alt="" />
             </NuxtLink>
           </div>
@@ -30,17 +42,20 @@
           <a href="tel:+380 48 705-46-61" class="footer-col__item"
             >Tel./fax: +380 48 705-46-61</a
           >
-          <a href="tel:+380 48 737-33-25" class="footer-col__item"
-            >Tel./fax: +380 48 737-33-25</a
-          >
-          <a href="mailto:ni@indel.com.ua" class="footer-col__item"
-            >ni@indel.com.ua</a
+          <a href="mailto:info@indel.com.ua" class="footer-col__item"
+            >info@indel.com.ua</a
           >
           <a
             href="http://indel.com.ua/"
             target="_blank"
             class="footer-col__item"
             >www.indel.com.ua</a
+          >
+          <a
+            href="https://indelcosm.com.ua"
+            target="_blank"
+            class="footer-col__item"
+            >www.indelcosm.com.ua</a
           >
         </div>
       </div>

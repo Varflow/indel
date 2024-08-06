@@ -9,15 +9,11 @@
             special and unique chemicals for production of personal care and
             cosmetics."
       />
-      <Meta name="og:image" content="/images/banners/company.js" />
+      <Meta name="og:image" :content="companyInfo.main_image" />
     </Head>
     <div class="company-banner">
-      <img
-        src="/images/banners/company.jpg"
-        alt=""
-        class="company-banner__image"
-      />
-      <h2 class="company-banner__title" v-if="texts">
+      <img :src="companyInfo.main_image" alt="" class="company-banner__image" />
+      <h2 class="company-banner__title" v-if="companyInfo">
         {{ companyInfo.title }}
       </h2>
     </div>
@@ -32,7 +28,7 @@
         </div>
 
         <div class="col-12 col-lg-6 company-content__info" data-aos="fade-left">
-          <h3 class="company-content__title" v-if="texts">
+          <h3 class="company-content__title" v-if="companyInfo">
             {{ companyInfo.first_block_title }}
           </h3>
           <p
@@ -122,7 +118,12 @@ export default {
     const media = useStrapiMedia();
 
     const companyInfo = await findOne("o-kompanii", {
-      populate: { first_image: "*", second_image: "*", third_image: "*" },
+      populate: {
+        first_image: "*",
+        second_image: "*",
+        third_image: "*",
+        main_image: "*",
+      },
     });
     const team = await find("komandas", {
       populate: {
@@ -133,6 +134,7 @@ export default {
     return {
       companyInfo: {
         ...companyInfo.data.attributes,
+        main_image: `${media}${companyInfo?.data?.attributes?.main_image?.data?.attributes.url}`,
         first_image: `${media}${companyInfo?.data?.attributes?.first_image?.data?.attributes.url}`,
         second_image: `${media}${companyInfo?.data?.attributes?.second_image?.data?.attributes.url}`,
         third_image: `${media}${companyInfo?.data?.attributes?.third_image?.data?.attributes.url}`,

@@ -33,6 +33,7 @@
   </div>
 </template>
 <script>
+import orderby from "lodash.orderby";
 const toView = (collection) => {
   if (!collection) {
     return [];
@@ -44,6 +45,7 @@ const toView = (collection) => {
       id: collection.id,
       name: collection.attributes.Name,
       image: collection.attributes.image.data?.attributes.url,
+      order: collection.attributes.order,
       children: !collection.attributes.pod_kategoriyas?.data.length
         ? null
         : collection.attributes.pod_kategoriyas?.data.map((subcategory) => {
@@ -64,11 +66,11 @@ export default {
 
       const categories = await find("categories", { populate: "*" });
 
-      const foods = categories.data.filter(
+      const foodCategories = categories.data.filter(
         (category) => category.attributes.section === "food"
       );
 
-      const foodForView = toView(foods);
+      const foodForView = orderby(toView(foodCategories), ["order"], ["asc"]);
 
       return {
         foodForView,

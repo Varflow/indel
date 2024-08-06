@@ -26,7 +26,6 @@
   </div>
 </template>
 <script>
-import orderBy from "lodash.orderby";
 const toView = (collection) => {
   if (!collection) {
     return [];
@@ -37,7 +36,6 @@ const toView = (collection) => {
       id: collection.id,
       name: collection.attributes.name,
       image: collection.attributes.image.data?.attributes.url,
-      order: collection.attributes.order,
     };
   });
 };
@@ -66,12 +64,11 @@ export default {
       const subcategories = toView(
         category.data.attributes.pod_kategoriyas?.data
       );
-      const orderedSubcategories = orderBy(subcategories, "order");
 
       return {
         title,
         categoryBanner,
-        subcategories: orderedSubcategories,
+        subcategories,
         media,
       };
     } catch (error) {

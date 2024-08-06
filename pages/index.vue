@@ -20,8 +20,13 @@ definePageMeta({
 });
 
 const departments = [
-  { name: "Фармацевтика", video: "/videos/pharm.mov", link: "", center: false },
-  { name: "Харчова", video: "/videos/food.mp4", link: "", center: false },
-  { name: "Косметика", video: "/videos/cosm.mp4", link: "", center: true },
+  { name: "Pharma", video: "/videos/pharm.mov", link: "/pharm", center: false },
+  { name: "Food", video: "/videos/food.mp4", link: "/food", center: false },
+  {
+    name: "Cosm",
+    video: "/videos/cosm.mp4",
+    link: "https://indelcosm.com.ua/",
+    center: true,
+  },
 ];
 </script>

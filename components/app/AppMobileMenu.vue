@@ -26,12 +26,10 @@
       >
         {{ menu.first_menu_item }}
       </NuxtLink>
+
       <div class="header-menu__link" v-if="menu">
-        <div
-          class="header-menu__link-label"
-          @click="toggleCategory('ingredients')"
-        >
-          {{ menu.second_menu_item }}
+        <div class="header-menu__link-label" @click="toggleCategory('food')">
+          Харчові інгредієнти
           <svg
             xmlns="http://www.w3.org/2000/svg"
             id="Outline"
@@ -46,9 +44,9 @@
         </div>
         <div
           class="header-menu-dropdown header-menu-categories"
-          :class="{ active: nameCategoryOpened === 'ingredients' }"
+          :class="{ active: nameCategoryOpened === 'food' }"
         >
-          <div class="header-menu__link" v-for="category of ingredientsForView">
+          <div class="header-menu__link" v-for="category of foodForView">
             <div
               class="header-menu__link-label"
               @click="toggleSubCategory(category.name)"
@@ -94,11 +92,8 @@
         </div>
       </div>
       <div class="header-menu__link" v-if="menu">
-        <div
-          class="header-menu__link-label"
-          @click="toggleCategory('applications')"
-        >
-          {{ menu.third_menu_item }}
+        <div class="header-menu__link-label" @click="toggleCategory('pharm')">
+          Фармацевтичні інгредієнти
           <svg
             xmlns="http://www.w3.org/2000/svg"
             id="Outline"
@@ -113,12 +108,9 @@
         </div>
         <div
           class="header-menu-dropdown header-menu-categories"
-          :class="{ active: nameCategoryOpened === 'applications' }"
+          :class="{ active: nameCategoryOpened === 'pharm' }"
         >
-          <div
-            class="header-menu__link"
-            v-for="category of applicationsForView"
-          >
+          <div class="header-menu__link" v-for="category of pharmForView">
             <div
               class="header-menu__link-label"
               @click="toggleSubCategory(category.name)"
@@ -163,6 +155,14 @@
           </div>
         </div>
       </div>
+      <NuxtLink
+        @click="$emit('close')"
+        to="/"
+        class="header-menu__link"
+        v-if="menu"
+      >
+        {{ menu.third_menu_item }}
+      </NuxtLink>
       <NuxtLink
         @click="$emit('close')"
         to="/partners"
@@ -230,19 +230,19 @@ export default {
       const categories = await find("categories", { populate: "*" });
       const menu = await find("menyu");
 
-      const ingredients = categories.data.filter(
-        (category) => category.attributes.section === "ingredients"
+      const food = categories.data.filter(
+        (category) => category.attributes.section === "food"
       );
-      const applications = categories.data.filter(
-        (category) => category.attributes.section === "application"
+      const pharm = categories.data.filter(
+        (category) => category.attributes.section === "pharm"
       );
 
-      const ingredientsForView = toView(ingredients);
-      const applicationsForView = toView(applications);
+      const foodForView = toView(food);
+      const pharmForView = toView(pharm);
 
       return {
-        ingredientsForView,
-        applicationsForView,
+        foodForView,
+        pharmForView,
         menu: menu.data.attributes,
       };
     } catch (error) {

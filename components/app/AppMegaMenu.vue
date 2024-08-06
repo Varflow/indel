@@ -194,6 +194,15 @@ export default {
   },
 
   watch: {
+    $route: {
+      immediate: true,
+      handler() {
+        this.currentSection = null;
+        this.currentCategory = null;
+
+        this.$emit("close");
+      },
+    },
     shown: {
       immediate: true,
       handler(_shown) {
