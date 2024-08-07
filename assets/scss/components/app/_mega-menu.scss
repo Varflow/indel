@@ -103,7 +103,9 @@
     flex-direction: column;
     row-gap: 16px;
 
-    max-height: 24vh;
+    // max-height: 24vh;
+    max-height: 205px;
+
     overflow-y: auto;
 
     &::-webkit-scrollbar {
