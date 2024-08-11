@@ -1,5 +1,5 @@
 <template>
-  <div class="post-card">
+  <div class="post-card" :class="home ? 'post-card--home' : ''">
     <div class="post-card__image-wrapper">
       <img :src="image" :alt="title" />
     </div>
@@ -15,6 +15,6 @@
 
 <script>
 export default {
-  props: ['title', 'category', 'createdAt', 'image'],
+  props: ["title", "category", "createdAt", "image", "home"],
 };
 </script>

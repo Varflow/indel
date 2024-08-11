@@ -1,6 +1,9 @@
 <template>
   <div class="row">
-    <div class="col-lg-4 col-xl-3 gy-5" v-for="post of postsForView">
+    <div
+      :class="home ? 'col-lg-4 col-xl-6 gy-5' : 'col-lg-4 col-xl-3 gy-5'"
+      v-for="post of postsForView"
+    >
       <NuxtLink :to="`/posts/${post.id}`" class="link-without-decoration">
         <PostCard
           :title="post.title"
@@ -15,7 +18,7 @@
 
 <script>
 export default {
-  props: ["limit"],
+  props: ["limit", "home"],
   async setup(props) {
     try {
       const media = useStrapiMedia();
