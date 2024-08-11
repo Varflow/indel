@@ -18,110 +18,95 @@
         <div class="mega-menu__column">
           <div class="mega-menu-sections__list">
             <!-- <div class="mega-menu__title">Інгредієнти</div> -->
-            <div
-              class="mega-menu__section-item"
-              @click="selectSection('pharm')"
-            >
-              <img src="/images/pill.png" alt="" class="section-item__icon" />
-              Фармацевтичні
+            <div class="mega-menu__section-item">
+              <NuxtLink to="/pharm"> Фармацевтичні </NuxtLink>
 
-              <svg
-                width="14"
-                height="14"
-                viewBox="0 0 14 14"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
+              <div
+                class="mega-menu-categories__button"
+                @click="selectSection('pharm')"
               >
-                <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="M9.49686 6.69064C9.66771 6.8615 9.66771 7.13851 9.49686 7.30936L5.12186 11.6844C4.95101 11.8552 4.674 11.8552 4.50314 11.6844C4.33229 11.5135 4.33229 11.2365 4.50314 11.0656L8.56878 7L4.50314 2.93436C4.33229 2.7635 4.33229 2.4865 4.50314 2.31564C4.674 2.14479 4.95101 2.14479 5.12186 2.31564L9.49686 6.69064Z"
-                  fill="#0F172A"
-                />
-              </svg>
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 14 14"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M9.49686 6.69064C9.66771 6.8615 9.66771 7.13851 9.49686 7.30936L5.12186 11.6844C4.95101 11.8552 4.674 11.8552 4.50314 11.6844C4.33229 11.5135 4.33229 11.2365 4.50314 11.0656L8.56878 7L4.50314 2.93436C4.33229 2.7635 4.33229 2.4865 4.50314 2.31564C4.674 2.14479 4.95101 2.14479 5.12186 2.31564L9.49686 6.69064Z"
+                    fill="#0F172A"
+                  />
+                </svg>
+              </div>
             </div>
-            <div class="mega-menu__section-item" @click="selectSection('food')">
-              <img
-                src="/images/vegetables.png"
-                alt=""
-                class="section-item__icon"
-              />
-              Харчові
-              <svg
-                width="14"
-                height="14"
-                viewBox="0 0 14 14"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
+            <div class="mega-menu__section-item">
+              <NuxtLink to="/food"> Харчові </NuxtLink>
+              <div
+                class="mega-menu-categories__button"
+                @click.stop="selectSection('food')"
               >
-                <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="M9.49686 6.69064C9.66771 6.8615 9.66771 7.13851 9.49686 7.30936L5.12186 11.6844C4.95101 11.8552 4.674 11.8552 4.50314 11.6844C4.33229 11.5135 4.33229 11.2365 4.50314 11.0656L8.56878 7L4.50314 2.93436C4.33229 2.7635 4.33229 2.4865 4.50314 2.31564C4.674 2.14479 4.95101 2.14479 5.12186 2.31564L9.49686 6.69064Z"
-                  fill="#0F172A"
-                />
-              </svg>
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 14 14"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M9.49686 6.69064C9.66771 6.8615 9.66771 7.13851 9.49686 7.30936L5.12186 11.6844C4.95101 11.8552 4.674 11.8552 4.50314 11.6844C4.33229 11.5135 4.33229 11.2365 4.50314 11.0656L8.56878 7L4.50314 2.93436C4.33229 2.7635 4.33229 2.4865 4.50314 2.31564C4.674 2.14479 4.95101 2.14479 5.12186 2.31564L9.49686 6.69064Z"
+                    fill="#0F172A"
+                  />
+                </svg>
+              </div>
             </div>
             <a
               href="https://indelcosm.com.ua"
               class="mega-menu__section-item"
               target="_blank"
             >
-              <img
-                src="/images/cosmetics.png"
-                alt=""
-                class="section-item__icon"
-              />
               Косметичні
             </a>
           </div>
         </div>
         <div class="mega-menu__column" v-if="currentSection">
           <div class="mega-menu-categories__list" v-if="currentSection">
-            <NuxtLink
-              class="mega-menu-categories__item"
-              :to="`/${currentSection[0].section}/`"
-            >
-              Усі
-              {{
-                currentSection[0].section === "food"
-                  ? "харчові інгредієнти"
-                  : "фармацевтичні інгредієнти"
-              }}
-            </NuxtLink>
             <div
               class="mega-menu-categories__item"
               v-for="category of currentSection"
-              @click="selectCategory(category.name)"
             >
-              {{ category.name }}
-              <svg
-                width="14"
-                height="14"
-                viewBox="0 0 14 14"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
+              <NuxtLink :to="`/${currentSection[0].section}/${category.id}`">
+                {{ category.name }}
+              </NuxtLink>
+
+              <div
+                class="mega-menu-categories__button"
+                @click.stop="selectCategory(category.name)"
                 v-if="Boolean(category.children?.length)"
               >
-                <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="M9.49686 6.69064C9.66771 6.8615 9.66771 7.13851 9.49686 7.30936L5.12186 11.6844C4.95101 11.8552 4.674 11.8552 4.50314 11.6844C4.33229 11.5135 4.33229 11.2365 4.50314 11.0656L8.56878 7L4.50314 2.93436C4.33229 2.7635 4.33229 2.4865 4.50314 2.31564C4.674 2.14479 4.95101 2.14479 5.12186 2.31564L9.49686 6.69064Z"
-                  fill="#0F172A"
-                />
-              </svg>
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 14 14"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M9.49686 6.69064C9.66771 6.8615 9.66771 7.13851 9.49686 7.30936L5.12186 11.6844C4.95101 11.8552 4.674 11.8552 4.50314 11.6844C4.33229 11.5135 4.33229 11.2365 4.50314 11.0656L8.56878 7L4.50314 2.93436C4.33229 2.7635 4.33229 2.4865 4.50314 2.31564C4.674 2.14479 4.95101 2.14479 5.12186 2.31564L9.49686 6.69064Z"
+                    fill="#0F172A"
+                  />
+                </svg>
+              </div>
             </div>
           </div>
         </div>
         <div class="mega-menu__column" v-if="currentCategory">
           <div class="mega-menu-categories__list" v-if="currentCategory">
-            <NuxtLink
-              class="mega-menu-categories__item"
-              :to="`/${currentSection[0].section}/${currentCategory.id}`"
-            >
-              Усі
-              {{ currentCategory.name }}
-            </NuxtLink>
             <NuxtLink
               class="mega-menu-categories__item"
               v-for="subcategory of currentCategory.children"
@@ -174,7 +159,11 @@ export default {
   async mounted() {
     try {
       const { find } = useStrapi();
-      const categories = await find("categories", { populate: "*" });
+      const categories = await find("categories", {
+        populate: {
+          pod_kategoriyas: "*",
+        },
+      });
 
       const pharm = categories.data.filter(
         (category) => category.attributes.section === "pharm"
@@ -197,10 +186,9 @@ export default {
     $route: {
       immediate: true,
       handler() {
-        this.currentSection = null;
-        this.currentCategory = null;
-
-        this.$emit("close");
+        // this.currentSection = null;
+        // this.currentCategory = null;
+        // this.$emit("close");
       },
     },
     shown: {
@@ -244,11 +232,6 @@ export default {
       );
     },
     watchClickOutside(event) {
-      console.log("event.target", event.target);
-      console.log(
-        "this.$refs.megaMenu.contains(event.target)",
-        this.$refs.megaMenu.contains(event.target)
-      );
       if (!this.$refs.megaMenu.contains(event.target)) {
         this.$emit("close");
       }

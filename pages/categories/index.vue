@@ -67,8 +67,17 @@ export default {
         pharm: "Фармацевтичні інгредієнти",
         food: "Харчові інгредієнти",
       };
-      console.log("route.query.section", route.query.section);
-      const categories = await find("categories", { populate: "*" });
+
+      const categories = await find("categories", {
+        populate: {
+          image: "*",
+          pod_kategoriyas: {
+            populate: {
+              image: "*",
+            },
+          },
+        },
+      });
 
       const currentCategories = categories.data.filter(
         (category) => category.attributes.section === route.query.section

@@ -32,7 +32,12 @@ export default {
       const { find } = useStrapi();
 
       const partners = await find("partners", {
-        populate: "*",
+        populate: {
+          logo: "*",
+        },
+        pagination: {
+          pageSize: 100,
+        },
       });
 
       console.log(partners);

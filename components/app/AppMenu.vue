@@ -2,9 +2,15 @@
   <NuxtLink to="/company" class="header-menu__link" v-if="menu">
     {{ menu.first_menu_item }}
   </NuxtLink>
-  <div class="header-menu__link" @click="toggleMegaMenu">
-    <div class="header-menu__link-label" data-el="popover-trigger">
+  <div class="header-menu__link">
+    <NuxtLink
+      to="/departments"
+      class="header-menu__link-label"
+      data-el="popover-trigger"
+    >
       {{ menu.second_menu_item }}
+    </NuxtLink>
+    <div class="app-menu-categories__button" @click="toggleMegaMenu">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         id="Outline"
@@ -35,27 +41,6 @@
 </template>
 
 <script>
-const toView = (collection) => {
-  if (!collection) {
-    return [];
-  }
-
-  return collection.map((collection) => {
-    return {
-      id: collection.id,
-      name: collection.attributes.Name,
-      children: !collection.attributes.pod_kategoriyas?.data.length
-        ? null
-        : collection.attributes.pod_kategoriyas?.data.map((subcategory) => {
-            return {
-              id: subcategory.id,
-              name: subcategory.attributes.name,
-            };
-          }),
-    };
-  });
-};
-
 export default {
   data() {
     return {
@@ -65,22 +50,9 @@ export default {
   async setup() {
     try {
       const { find } = useStrapi();
-      const categories = await find("categories", { populate: "*" });
       const menu = await find("menyu");
 
-      const ingredients = categories.data.filter(
-        (category) => category.attributes.section === "ingredients"
-      );
-      const applications = categories.data.filter(
-        (category) => category.attributes.section === "application"
-      );
-
-      const ingredientsForView = toView(ingredients);
-      const applicationsForView = toView(applications);
-
       return {
-        ingredientsForView,
-        applicationsForView,
         menu: menu.data.attributes,
       };
     } catch (error) {
