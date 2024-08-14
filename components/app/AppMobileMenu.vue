@@ -156,6 +156,13 @@
         </div>
       </div>
       <NuxtLink
+        to="https://indelcosm.com.ua/"
+        class="header-menu__link"
+        v-if="menu"
+      >
+        Косметичні інгредієнти
+      </NuxtLink>
+      <NuxtLink
         @click="$emit('close')"
         to="/"
         class="header-menu__link"

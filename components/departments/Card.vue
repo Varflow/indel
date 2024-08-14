@@ -12,7 +12,7 @@
       ></video>
       <h4 class="department-card__title">{{ name }}</h4>
       <NuxtLink class="department-card__button">
-        <span> Переглянути товари </span>
+        <span>Детальніше</span>
       </NuxtLink>
     </div>
   </a>

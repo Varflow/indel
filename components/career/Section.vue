@@ -7,7 +7,10 @@
         </h2>
       </div>
 
-      <div class="section-text" v-html="texts.career_section_text"></div>
+      <div
+        class="section-text carrer-text"
+        v-html="texts.career_section_text"
+      ></div>
 
       <div class="section-actions">
         <NuxtLink to="/career" class="link-without-decoration">
@@ -25,3 +28,9 @@ export default {
   props: ["texts"],
 };
 </script>
+
+<style scoped>
+.carrer-text {
+  text-align: center;
+}
+</style>
