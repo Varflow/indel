@@ -5,11 +5,11 @@
         <img :src="banner" alt="" class="about-banner__image" />
       </div>
       <div class="col-lg-6 about-banner__content">
-        <h6
+        <div
           v-if="texts"
           class="about-banner__subtitle"
           v-html="texts.first_section_subtitle"
-        ></h6>
+        ></div>
         <!-- <h2 class="about-banner__title" v-if="texts">
           {{ texts.first_section_title }}
         </h2> -->
