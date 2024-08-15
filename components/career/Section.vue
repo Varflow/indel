@@ -29,8 +29,12 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .carrer-text {
   text-align: center;
+
+  a {
+    color: rgba(0, 0, 0, 0.6);
+  }
 }
 </style>
