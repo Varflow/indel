@@ -8,7 +8,8 @@
         ref="video"
         muted
         autoplay
-        loopplaysinline
+        loop
+        playsinline
       ></video>
       <h4 class="department-card__title">{{ name }}</h4>
       <NuxtLink class="department-card__button">
